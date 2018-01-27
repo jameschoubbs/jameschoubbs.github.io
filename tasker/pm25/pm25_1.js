@@ -164,6 +164,7 @@ window.addEventListener('load', function(e) {
 				
 	};
 	
+	fBoardToRun('demo-area-01-show', deviceId_WSHOM1, deviceComment_WSHOM1, sheetUrl_WSHOM1, sheetName_WSHOM1);
 	fBoardToRun('demo-area-02-show', deviceId_WSHOM2, deviceComment_WSHOM2, sheetUrl_WSHOM2, sheetName_WSHOM2);
 
 });
