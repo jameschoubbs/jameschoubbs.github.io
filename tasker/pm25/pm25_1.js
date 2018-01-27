@@ -53,6 +53,7 @@ window.addEventListener('load', function(e) {
 	var fBoardToRun = function(elementId, deviceId, deviceComment, sheetUrl, sheetName)	{
 		
 		var isReady = false;
+		var initRow = ([('<br/>'),('<br/>'),('<br/>'),('<br/>')].join(''));
 		var ConnSta = deviceComment + ' 嘗試連線...';
 
 		document.getElementById(elementId).style.display = 'block';
