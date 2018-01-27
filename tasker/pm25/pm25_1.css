@@ -1,2 +1,3 @@
-#demo-area-01-show { font-size 60px; pointer-events auto!important; color: yellow; background-color: blue; }
-#demo-area-02-show { font-size 60px; pointer-events auto!important; color: yellow; background-color: blue; }
+body { margin: 0px; }
+#demo-area-01-show { font-size 60px; pointer-events auto!important; color: yellow; background-color: gray; font-weight: bold; }
+#demo-area-02-show { font-size 60px; pointer-events auto!important; color: yellow; background-color: gray; font-weight: bold; }
