@@ -150,8 +150,6 @@ window.addEventListener('load', function(e) {
 				
 				}
 				
-				lastCount = readCount;
-				
 			}, 1000);
 			
 			var fReadCheck = function() {
@@ -172,6 +170,8 @@ window.addEventListener('load', function(e) {
 					fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName);
 					
 				}
+				
+				lastCount = readCount;
 				
 				setTimeout(function() {
 					
