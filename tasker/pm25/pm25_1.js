@@ -54,7 +54,7 @@ window.addEventListener('load', function(e) {
 		
 		var isReady = false;
 		var initRow = ([('<br/>'),('<br/>'),('<br/>'),('<br/>')].join(''));
-		var ConnSta = deviceComment + ' 嘗試連線...';
+		var ConnSta = deviceComment + ' 嘗試連線...' + initRow;
 
 		document.getElementById(elementId).style.display = 'block';
 		document.getElementById(elementId).innerHTML = ConnSta;
@@ -69,7 +69,7 @@ window.addEventListener('load', function(e) {
 				
 				board.error = err;
 				
-				ConnSta = deviceComment + ' 連線中斷！';
+				ConnSta = deviceComment + ' 連線中斷！' + initRow;
 				document.getElementById(elementId).innerHTML = ConnSta;
 				
 				setTimeout(function() { fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName); }, 3000);
@@ -129,7 +129,7 @@ window.addEventListener('load', function(e) {
 				
 				var TimeStr = [HH,':',MI,':',SS].join('');
 				
-				ConnSta = deviceComment + ' 正在監測...';
+				ConnSta = deviceComment + ' 正在監測中...';
 				
 				var PM2_5 = g3.pm25;
 				var PM1_0 = g3.pm10;
@@ -154,7 +154,7 @@ window.addEventListener('load', function(e) {
 			
 			if(!isReady) {
 
-				ConnSta = deviceComment + ' 連線失敗！';
+				ConnSta = deviceComment + ' 連線失敗！' + initRow;
 				document.getElementById(elementId).innerHTML = ConnSta;
 				
 				setTimeout(function() { fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName); }, 3000);
