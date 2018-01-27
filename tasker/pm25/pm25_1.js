@@ -52,10 +52,14 @@ window.addEventListener('load', function(e) {
 
 	var fBoardToRun = function(elementId, deviceId, deviceComment, sheetUrl, sheetName)	{
 		
+		var isReady = false;
+		
 		var ConnSta = deviceComment + ' 嘗試連線...';
 		document.getElementById(elementId).innerHTML = ConnSta;
 
 		boardReady({ board: 'Smart', device: deviceId, transport: 'mqtt' }, function (board) {
+			
+			isReady = true;
 			
 			board.samplingInterval = 50;
 			
@@ -141,8 +145,19 @@ window.addEventListener('load', function(e) {
 				
 			}, 1000);
 		});
+		
+		setTimeout(function() {
+			
+			if(!isReady) {
+
+				fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName);
+				
+			}
+			
+		}, 10000);
+				
 	};
 	
-	fBoardToRun('demo-area-02-show', deviceId_WSHOM2, sheetUrl_WSHOM2, sheetName_WSHOM2);
+	fBoardToRun('demo-area-02-show', deviceId_WSHOM2, deviceComment_WSHOM1, sheetUrl_WSHOM2, sheetName_WSHOM2);
 
 });
