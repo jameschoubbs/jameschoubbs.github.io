@@ -140,7 +140,7 @@ window.addEventListener('load', function(e) {
 					
 					writeSheetData(myData);
 					
-					document.getElementById(elementId).innerHTML = ([ConnSta,('<br/>'),DateStr,('<br/>'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',('<br/>'),'PM1.0=[',PM1_0,']'].join(''));
+					document.getElementById(elementId).innerHTML = ([ConnSta,('<br/>'),DateStr,('&nbsp;'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',('<br/>'),'PM1.0=[',PM1_0,']'].join(''));
 				
 				}
 				
