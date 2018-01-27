@@ -81,13 +81,7 @@ window.addEventListener('load', function(e) {
 			myData.sheetUrl = sheetUrl;
 			myData.sheetName = sheetName;
 			
-			var readCount = 0;
-			var lastCount = readCount;
-			var stopCount = 0;			
-			
 			g3.read(function(evt) {
-				
-				readCount++;
 				
 				var YYYY = String('') + String(get_date("y"));
 				var MM = String('') + String(get_date("m"));
@@ -152,44 +146,16 @@ window.addEventListener('load', function(e) {
 				
 			}, 1000);
 			
-			var fReadCheck = function() {
-				
-				if (lastCount == readCount) {
-					
-					stopCount++;
-					
-				}
-				else {
-					
-					stopCount = 0;
-					
-				}
-				
-				if (stopCount > 10) {
-					
-					fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName);
-					
-				}
-				
-				lastCount = readCount;
-				
-				setTimeout(function() {
-					
-					fReadCheck();
-					
-				}, 1000);
-				
-			};
-			
-			fReadCheck();
-			
 		});
 		
 		setTimeout(function() {
 			
 			if(!isReady) {
 
-				fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName);
+				ConnSta = deviceComment + ' 連線中斷！';
+				document.getElementById(elementId).innerHTML = ConnSta;
+				
+				setTimeout(function() { fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName); }, 1000);
 				
 			}
 			
