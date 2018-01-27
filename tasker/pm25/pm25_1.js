@@ -49,7 +49,7 @@ window.addEventListener('load', function(e) {
 
 	var fBoardToRun = function(elementId, deviceId, sheetUrl, sheetName)	{
 		
-		var ConnSta = '嘗試連線...';
+		var ConnSta = deviceId + ' 嘗試連線...';
 		document.getElementById(elementId).innerHTML = ConnSta;
 
 		boardReady({ board: 'Smart', device: deviceId, transport: 'mqtt' }, function (board) {
@@ -118,7 +118,7 @@ window.addEventListener('load', function(e) {
 				
 				var TimeStr = [HH,':',MI,':',SS].join('');
 				
-				ConnSta = '正在監測...';
+				ConnSta = deviceId + ' 正在監測...';
 				
 				var PM2_5 = g3.pm25;
 				var PM1_0 = g3.pm10;
