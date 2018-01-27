@@ -152,7 +152,7 @@ window.addEventListener('load', function(e) {
 			
 			if(!isReady) {
 
-				ConnSta = deviceComment + ' 連線中斷！';
+				ConnSta = deviceComment + ' 連線失敗！';
 				document.getElementById(elementId).innerHTML = ConnSta;
 				
 				setTimeout(function() { fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName); }, 1000);
