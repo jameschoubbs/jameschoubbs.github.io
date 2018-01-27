@@ -1,6 +1,9 @@
+var deviceComment_WSHOM1 = 'WSHOM1';
+var deviceId_WSHOM1 = '10VWD5KQ';
 var sheetUrl_WSHOM1 = 'https://docs.google.com/spreadsheets/d/1FOtBgVQuru_b91fbc1VyErKqqGL67EuhulgQPqjfCqU/edit?usp=sharing';
 var sheetName_WSHOM1 = 'WSHOM1Data';
-var deviceId_WSHOM1 = '10VWD5KQ';
+
+var deviceComment_WSHOM2 = 'WSHOM2';
 var sheetUrl_WSHOM2 = 'https://docs.google.com/spreadsheets/d/1-Nvc0tMEwlzhPeva8XXTNky9TXB5teVTOi6i_Avjb3I/edit?usp=sharing';
 var sheetName_WSHOM2 = 'Data';
 var deviceId_WSHOM2 = '10VggPwV';
@@ -47,9 +50,9 @@ window.addEventListener('load', function(e) {
 		return varNow;
 	}
 
-	var fBoardToRun = function(elementId, deviceId, sheetUrl, sheetName)	{
+	var fBoardToRun = function(elementId, deviceId, deviceComment, sheetUrl, sheetName)	{
 		
-		var ConnSta = deviceId + ' 嘗試連線...';
+		var ConnSta = deviceComment + ' 嘗試連線...';
 		document.getElementById(elementId).innerHTML = ConnSta;
 
 		boardReady({ board: 'Smart', device: deviceId, transport: 'mqtt' }, function (board) {
@@ -59,9 +62,11 @@ window.addEventListener('load', function(e) {
 			board.on('error',function (err) {
 				
 				board.error = err;
-				document.getElementById(elementId).innerHTML = '連線中斷！';
 				
-				setTimeout(function() { fBoardToRun(elementId, deviceId, sheetUrl, sheetName); }, 1000);
+				ConnSta = deviceComment + ' 連線中斷！';
+				document.getElementById(elementId).innerHTML = ConnSta;
+				
+				setTimeout(function() { fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName); }, 1000);
 				
 			});
 			
@@ -118,7 +123,7 @@ window.addEventListener('load', function(e) {
 				
 				var TimeStr = [HH,':',MI,':',SS].join('');
 				
-				ConnSta = deviceId + ' 正在監測...';
+				ConnSta = deviceComment + ' 正在監測...';
 				
 				var PM2_5 = g3.pm25;
 				var PM1_0 = g3.pm10;
