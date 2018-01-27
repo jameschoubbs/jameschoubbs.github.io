@@ -161,6 +161,11 @@ window.addEventListener('load', function(e) {
 					stopCount++;
 					
 				}
+				else {
+					
+					stopCount = 0;
+					
+				}
 				
 				if (stopCount > 10) {
 					
