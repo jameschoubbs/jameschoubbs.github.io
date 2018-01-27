@@ -8,53 +8,53 @@ var sheetUrl_WSHOM2 = 'https://docs.google.com/spreadsheets/d/1-Nvc0tMEwlzhPeva8
 var sheetName_WSHOM2 = 'Data';
 var deviceId_WSHOM2 = '10VggPwV';
 
+function get_date(t) {
+	var varDay = new Date(),
+		varYear = varDay.getFullYear(),
+		varMonth = varDay.getMonth() + 1,
+		varDate = varDay.getDate();
+	var varNow;
+	if (t == "ymd") {
+		varNow = varYear + "/" + varMonth + "/" + varDate;
+	} else if (t == "mdy") {
+		varNow = varMonth + "/" + varDate + "/" + varYear;
+	} else if (t == "dmy") {
+		varNow = varDate + "/" + varMonth + "/" + varYear;
+	} else if (t == "y") {
+		varNow = varYear;
+	} else if (t == "m") {
+		varNow = varMonth;
+	} else if (t == "d") {
+		varNow = varDate;
+	}
+	return varNow;
+}
+
+function get_time(t) {
+	var varTime = new Date(),
+		varHours = varTime.getHours(),
+		varMinutes = varTime.getMinutes(),
+		varSeconds = varTime.getSeconds();
+	var varNow;
+	if (t == "hms") {
+		varNow = varHours + ":" + varMinutes + ":" + varSeconds;
+	} else if (t == "h") {
+		varNow = varHours;
+	} else if (t == "m") {
+		varNow = varMinutes;
+	} else if (t == "s") {
+		varNow = varSeconds;
+	}
+	return varNow;
+}
+
 window.addEventListener('load', function(e) {
-
-	function get_date(t) {
-		var varDay = new Date(),
-			varYear = varDay.getFullYear(),
-			varMonth = varDay.getMonth() + 1,
-			varDate = varDay.getDate();
-		var varNow;
-		if (t == "ymd") {
-			varNow = varYear + "/" + varMonth + "/" + varDate;
-		} else if (t == "mdy") {
-			varNow = varMonth + "/" + varDate + "/" + varYear;
-		} else if (t == "dmy") {
-			varNow = varDate + "/" + varMonth + "/" + varYear;
-		} else if (t == "y") {
-			varNow = varYear;
-		} else if (t == "m") {
-			varNow = varMonth;
-		} else if (t == "d") {
-			varNow = varDate;
-		}
-		return varNow;
-	}
-
-	function get_time(t) {
-		var varTime = new Date(),
-			varHours = varTime.getHours(),
-			varMinutes = varTime.getMinutes(),
-			varSeconds = varTime.getSeconds();
-		var varNow;
-		if (t == "hms") {
-			varNow = varHours + ":" + varMinutes + ":" + varSeconds;
-		} else if (t == "h") {
-			varNow = varHours;
-		} else if (t == "m") {
-			varNow = varMinutes;
-		} else if (t == "s") {
-			varNow = varSeconds;
-		}
-		return varNow;
-	}
 
 	var fBoardToRun = function(elementId, deviceId, deviceComment, sheetUrl, sheetName)	{
 		
 		var isReady = false;
-		
 		var ConnSta = deviceComment + ' 嘗試連線...';
+
 		document.getElementById(elementId).innerHTML = ConnSta;
 
 		boardReady({ board: 'Smart', device: deviceId, transport: 'mqtt' }, function (board) {
@@ -81,7 +81,13 @@ window.addEventListener('load', function(e) {
 			myData.sheetUrl = sheetUrl;
 			myData.sheetName = sheetName;
 			
+			var readCount = 0;
+			var lastCount = readCount;
+			var stopCount = 0;			
+			
 			g3.read(function(evt) {
+				
+				readCount++;
 				
 				var YYYY = String('') + String(get_date("y"));
 				var MM = String('') + String(get_date("m"));
@@ -140,10 +146,38 @@ window.addEventListener('load', function(e) {
 					
 					writeSheetData(myData);
 					
-					document.getElementById(elementId).innerHTML = ([ConnSta,('<br/>'),DateStr,('<br/>'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',('<br/>'),'PM1.0=[',PM1_0,']'].join(''));
+					document.getElementById(elementId).innerHTML = ([ConnSta,('<br/>'),DateStr,('<br/>'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',('<br/>'),'PM1.0=[',PM1_0,']',('<br/>'),'STOPC=['+stopCount+']'].join(''));
+				
 				}
 				
+				lastCount = readCount;
+				
 			}, 1000);
+			
+			var fReadCheck = function() {
+				
+				if (lastCount == readCount) {
+					
+					stopCount++;
+					
+				}
+				
+				if (stopCount > 10) {
+					
+					fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName);
+					
+				}
+				
+				setTimeout(function() {
+					
+					fReadCheck();
+					
+				}, 1000);
+				
+			};
+			
+			fReadCheck();
+			
 		});
 		
 		setTimeout(function() {
