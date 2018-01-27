@@ -55,6 +55,7 @@ window.addEventListener('load', function(e) {
 		var isReady = false;
 		var ConnSta = deviceComment + ' 嘗試連線...';
 
+		document.getElementById(elementId).style.display = 'block';
 		document.getElementById(elementId).innerHTML = ConnSta;
 
 		boardReady({ board: 'Smart', device: deviceId, transport: 'mqtt' }, function (board) {
