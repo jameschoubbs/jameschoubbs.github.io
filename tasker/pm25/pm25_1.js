@@ -53,11 +53,13 @@ window.addEventListener('load', function(e) {
 	var fBoardToRun = function(elementId, deviceId, deviceComment, sheetUrl, sheetName)	{
 		
 		var isReady = false;
+		var element = document.getElementById(elementId);
 		var initRow = ([('<br/>'),('<br/>'),('<br/>'),('<br/>')].join(''));
 		var ConnSta = deviceComment + ' 嘗試連線...' + initRow;
 
-		document.getElementById(elementId).style.display = 'block';
-		document.getElementById(elementId).innerHTML = ConnSta;
+		element.style.display = 'block';
+		element.style.backgroundColor = '';
+		element.innerHTML = ConnSta;
 
 		boardReady({ board: 'Smart', device: deviceId, transport: 'mqtt' }, function (board) {
 			
@@ -70,7 +72,7 @@ window.addEventListener('load', function(e) {
 				board.error = err;
 				
 				ConnSta = deviceComment + ' 連線中斷！' + initRow;
-				document.getElementById(elementId).innerHTML = ConnSta;
+				element.innerHTML = ConnSta;
 				
 				setTimeout(function() { fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName); }, 3000);
 				
@@ -142,7 +144,70 @@ window.addEventListener('load', function(e) {
 					
 					writeSheetData(myData);
 					
-					document.getElementById(elementId).innerHTML = ([ConnSta,('<br/>'),DateStr,('&nbsp;'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',('<br/>'),'PM1.0=[',PM1_0,']'].join(''));
+					var PM2_5_Text = '(無)';
+					
+					if (PM2_5 >= 0 && PM2_5 <= 11) {
+						
+							PM2_5_Text = '(低)';
+							element.style.color = '#000';
+							element.style.backgroundColor = '#9cff9c';
+					}
+					else if (PM2_5 >= 12 && PM2_5 <= 23) {
+						
+							PM2_5_Text = '(低)';
+							element.style.color = '#000';
+							element.style.backgroundColor = '#31ff00';
+					}
+					else if (PM2_5 >= 24 && PM2_5 <= 35) {
+						
+							PM2_5_Text = '(低)';
+							element.style.color = '#000';
+							element.style.backgroundColor = '#31cf00';
+					}
+					else if (PM2_5 >= 36 && PM2_5 <= 41) {
+						
+							PM2_5_Text = '(中)';
+							element.style.color = '#000';
+							element.style.backgroundColor = 'yellow';
+					}
+					else if (PM2_5 >= 42 && PM2_5 <= 47) {
+						
+							PM2_5_Text = '(中)';
+							element.style.color = '#000';
+							element.style.backgroundColor = 'ffcf00';
+					}
+					else if (PM2_5 >= 48 && PM2_5 <= 53) {
+						
+							PM2_5_Text = '(中)';
+							element.style.color = '#000';
+							element.style.backgroundColor = '#ff9a00';
+					}
+					else if (PM2_5 >= 54 && PM2_5 <= 58) {
+						
+							PM2_5_Text = '(高)';
+							element.style.color = '#000';
+							element.style.backgroundColor = '#ff6464';
+					}
+					else if (PM2_5 >= 59 && PM2_5 <= 64) {
+						
+							PM2_5_Text = '(高)';
+							element.style.color = 'gray';
+							element.style.backgroundColor = '#red';
+					}
+					else if (PM2_5 >= 65 && PM2_5 <= 70) {
+						
+							PM2_5_Text = '(高)';
+							element.style.color = 'gray';
+							element.style.backgroundColor = '#900';
+					}
+					else if (PM2_5 >= 71) {
+						
+							PM2_5_Text = '(非常高)';
+							element.style.color = 'gray';
+							element.style.backgroundColor = '#ce30ff';
+					}
+					
+					element.innerHTML = ([ConnSta,('<br/>'),DateStr,('&nbsp;'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',PM2_5_Text,('<br/>'),'PM1.0=[',PM1_0,']'].join(''));
 				
 				}
 				
@@ -155,7 +220,7 @@ window.addEventListener('load', function(e) {
 			if(!isReady) {
 
 				ConnSta = deviceComment + ' 連線失敗！' + initRow;
-				document.getElementById(elementId).innerHTML = ConnSta;
+				element.innerHTML = ConnSta;
 				
 				setTimeout(function() { fBoardToRun(elementId, deviceId, deviceComment, sheetUrl, sheetName); }, 3000);
 				
