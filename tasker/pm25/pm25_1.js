@@ -60,6 +60,7 @@ window.addEventListener('load', function(e) {
 		element.style.display = 'block';
 		element.style.color = 'gray';
 		element.style.backgroundColor = 'black';
+		element.style.borderColor = 'green';
 		element.innerHTML = ConnSta;
 
 		boardReady({ board: 'Smart', device: deviceId, transport: 'mqtt' }, function (board) {
@@ -72,6 +73,10 @@ window.addEventListener('load', function(e) {
 				
 				board.error = err;
 				
+				element.style.color = 'gray';
+				element.style.backgroundColor = 'black';
+				element.style.borderColor = 'green';
+
 				ConnSta = deviceComment + ' 連線中斷！' + initRow;
 				element.innerHTML = ConnSta;
 				
@@ -152,60 +157,70 @@ window.addEventListener('load', function(e) {
 							PM2_5_Text = '(低)';
 							element.style.color = '#000';
 							element.style.backgroundColor = '#9cff9c';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 12 && PM2_5 <= 23) {
 						
 							PM2_5_Text = '(低)';
 							element.style.color = '#000';
 							element.style.backgroundColor = '#31ff00';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 24 && PM2_5 <= 35) {
 						
 							PM2_5_Text = '(低)';
 							element.style.color = '#000';
 							element.style.backgroundColor = '#31cf00';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 36 && PM2_5 <= 41) {
 						
 							PM2_5_Text = '(中)';
 							element.style.color = '#000';
 							element.style.backgroundColor = 'yellow';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 42 && PM2_5 <= 47) {
 						
 							PM2_5_Text = '(中)';
 							element.style.color = '#000';
 							element.style.backgroundColor = 'ffcf00';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 48 && PM2_5 <= 53) {
 						
 							PM2_5_Text = '(中)';
 							element.style.color = '#000';
 							element.style.backgroundColor = '#ff9a00';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 54 && PM2_5 <= 58) {
 						
 							PM2_5_Text = '(高)';
 							element.style.color = '#000';
 							element.style.backgroundColor = '#ff6464';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 59 && PM2_5 <= 64) {
 						
 							PM2_5_Text = '(高)';
 							element.style.color = 'gray';
 							element.style.backgroundColor = '#red';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 65 && PM2_5 <= 70) {
 						
 							PM2_5_Text = '(高)';
 							element.style.color = 'gray';
 							element.style.backgroundColor = '#900';
+							element.style.borderColor = 'gray';
 					}
 					else if (PM2_5 >= 71) {
 						
 							PM2_5_Text = '(非常高)';
-							element.style.color = 'gray';
+							element.style.color = 'white';
 							element.style.backgroundColor = '#ce30ff';
+							element.style.borderColor = 'gray';
 					}
 					
 					element.innerHTML = ([ConnSta,('<br/>'),DateStr,('&nbsp;'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',('&nbsp;'),PM2_5_Text,('<br/>'),'PM1.0=[',PM1_0,']'].join(''));
