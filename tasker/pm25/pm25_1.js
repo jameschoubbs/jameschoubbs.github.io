@@ -208,7 +208,7 @@ window.addEventListener('load', function(e) {
 							element.style.backgroundColor = '#ce30ff';
 					}
 					
-					element.innerHTML = ([ConnSta,('<br/>'),DateStr,('&nbsp;'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',PM2_5_Text,('<br/>'),'PM1.0=[',PM1_0,']'].join(''));
+					element.innerHTML = ([ConnSta,('<br/>'),DateStr,('&nbsp;'),TimeStr,('<br/>'),'PM2.5=[',PM2_5,']',('&nbsp;'),PM2_5_Text,('<br/>'),'PM1.0=[',PM1_0,']'].join(''));
 				
 				}
 				
