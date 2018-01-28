@@ -1,12 +1,12 @@
 var deviceComment_WSHOM1 = 'WSHOM1';
 var deviceId_WSHOM1 = '10VWD5KQ';
 var sheetUrl_WSHOM1 = 'https://docs.google.com/spreadsheets/d/1FOtBgVQuru_b91fbc1VyErKqqGL67EuhulgQPqjfCqU/edit?usp=sharing';
-var sheetName_WSHOM1 = 'WSHOM1Data';
+var sheetName_WSHOM1 = 'Data';
 
 var deviceComment_WSHOM2 = 'WSHOM2';
+var deviceId_WSHOM2 = '10VggPwV';
 var sheetUrl_WSHOM2 = 'https://docs.google.com/spreadsheets/d/1-Nvc0tMEwlzhPeva8XXTNky9TXB5teVTOi6i_Avjb3I/edit?usp=sharing';
 var sheetName_WSHOM2 = 'Data';
-var deviceId_WSHOM2 = '10VggPwV';
 
 function get_date(t) {
 	var varDay = new Date(),
