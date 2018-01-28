@@ -58,7 +58,8 @@ window.addEventListener('load', function(e) {
 		var ConnSta = deviceComment + ' 嘗試連線...' + initRow;
 
 		element.style.display = 'block';
-		element.style.backgroundColor = '';
+		element.style.color = 'gray';
+		element.style.backgroundColor = 'black';
 		element.innerHTML = ConnSta;
 
 		boardReady({ board: 'Smart', device: deviceId, transport: 'mqtt' }, function (board) {
