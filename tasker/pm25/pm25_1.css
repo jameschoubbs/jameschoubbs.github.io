@@ -1,11 +1,11 @@
 body { margin: 0px; background-color: black; color: gray; font-weight: bold; text-align: center; }
 
-@media only screen and (min-width: 421px) {
+@media only screen and (min-width: 420px) {
 	#demo-area-01-show { display: none; font-size: 36px; padding: 10px; border-style: solid; border-color: gray; border-width: 4px; width: 420px; height: 220px; }
 	#demo-area-02-show { display: none; font-size: 36px; padding: 10px; border-style: solid; border-color: gray; border-width: 4px; width: 420px; height: 220px; }
 }
 
-@media only screen and (max-width: 420px) {
-	#demo-area-01-show { display: none; font-size: 36px; padding: 10px; border-style: solid; border-color: gray; border-width: 4px; width: 400px; height: 220px; }
-	#demo-area-02-show { display: none; font-size: 36px; padding: 10px; border-style: solid; border-color: gray; border-width: 4px; width: 400px; height: 220px; }
+@media only screen and (max-width: 419px) {
+	#demo-area-01-show { display: none; font-size: 36px; padding: 10px; border-style: solid; border-color: gray; border-width: 4px; width: 360px; height: 220px; }
+	#demo-area-02-show { display: none; font-size: 36px; padding: 10px; border-style: solid; border-color: gray; border-width: 4px; width: 360px; height: 220px; }
 }
