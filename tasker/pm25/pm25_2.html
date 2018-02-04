@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>PM2.5 Viewer</title>
+	<link rel="stylesheet" type="text/css" href="pm25_2.css">
+  <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
+  <script src="https://webduino.io/components/webduino-js/dist/webduino-all.min.js"></script>
+  <script src="https://blockly.webduino.io/webduino-blockly.js"></script>
+  <script src="https://blockly.webduino.io/lib/firebase.js"></script>
+  <script src="https://blockly.webduino.io/lib/runtime.min.js"></script>
+  <script src="https://blocklypro.webduino.io/components/webduino-module-pm25/G3.js"></script>
+  <script src="https://blocklypro.webduino.io/components/webduino-module-pm25/G3-blockly.js"></script>
+  <script src="pm25_2.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js"
+    onload="this.onload=function(){}; handleClientLoad();"
+    onreadystatechange="if (this.readyState === 'complete') this.onload();">
+  </script>
+</head>
+
+<body>
+	<div style="display: inline-block; text-align: center;">
+		<br/>
+		<br/>
+		<br/>
+		<div style="text-align: left;">
+			<div id="demo-area-01-show"></div>
+			<br/>
+			<div id="demo-area-02-show"></div>
+    </div>
+    <br/>
+    <button id="authorize-button" style="display: none;">Authorize</button>
+    <button id="signout-button" style="display: none;">Sign Out</button>
+    <pre id="content"></pre>
+	</div>
+</body>
