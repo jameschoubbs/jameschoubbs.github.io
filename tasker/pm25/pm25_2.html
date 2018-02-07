@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Sheets API Quickstart</title>
-    <meta charset='utf-8' />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>PM2.5 Viewer</title>
     <script src="pm25_2.js"></script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad();"
       onreadystatechange="if (this.readyState === 'complete') this.onload();">
     </script>
   </head>
+  
   <body>
-    <p>Google Sheets API Quickstart</p>
-
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize-button" style="display: none;">Authorize</button>
-    <button id="signout-button" style="display: none;">Sign Out</button>
-
-    <pre id="content"></pre>
+    <div style="display: inline-block; text-align: center;">
+      <br/>
+      <br/>
+      <br/>
+      <div style="text-align: left;">
+        <div id="demo-area-01-show"></div>
+        <br/>
+        <div id="demo-area-02-show"></div>
+      </div>
+    </div>
   </body>
 </html>
