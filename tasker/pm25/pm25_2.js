@@ -65,6 +65,12 @@ function Refresh() {
 			
 			element.innerHTML = row[0];
 
+			setTimeout(function {
+
+				Refresh();
+
+			}, 1000);
+
 		}
 		else {
 
