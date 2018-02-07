@@ -83,3 +83,9 @@ function listMajors() {
 		appendPre('Error: ' + response.result.error.message);
 	});
 }
+
+window.addEventListener('load', function(e) {
+
+	handleClientLoad();
+	
+};
