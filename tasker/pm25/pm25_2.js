@@ -65,7 +65,7 @@ function Refresh() {
 			
 			element.innerHTML = row[0];
 
-			setTimeout(function {
+			setTimeout(function() {
 
 				Refresh();
 
