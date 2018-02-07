@@ -4,7 +4,10 @@
     <title>Google Sheets API Quickstart</title>
     <meta charset='utf-8' />
     <script src="pm25_2.js"></script>
-    <script src="https://apis.google.com/js/api.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad();"
+      onreadystatechange="if (this.readyState === 'complete') this.onload();">
+    </script>
   </head>
   <body>
     <p>Google Sheets API Quickstart</p>
