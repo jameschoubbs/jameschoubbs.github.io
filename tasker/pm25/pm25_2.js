@@ -109,7 +109,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 					}
 
 					// (12)[最新PM2.5偵測值]
-					isOK = (isOK && (row[11] != null && row[11].length > 0 && !isNaN(row[11]));
+					isOK = (isOK && (row[11] != null && row[11].length > 0 && !isNaN(row[11])));
 
 					if (isOK) {
 
@@ -117,7 +117,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 					}
 
 					// (13)[最新PM1.0偵測值]
-					isOK = (isOK && (row[12] != null && row[12].length > 0 && !isNaN(row[12]));
+					isOK = (isOK && (row[12] != null && row[12].length > 0 && !isNaN(row[12])));
 
 					if (isOK) {
 
