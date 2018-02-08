@@ -57,13 +57,18 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 	var lastDateTime = null;
 	var element = document.getElementById(elementId);
 	var initRow = ([('<br/>'), ('<br/>'), ('<br/>'), ('<br/>')].join(''));
-	var connSta = deviceComment + ' 嘗試連線...' + initRow;
+	var connSta = null;
 
-	element.style.display = 'block';
-	element.style.color = 'gray';
-	element.style.backgroundColor = 'black';
-	element.style.borderColor = 'green';
-	element.innerHTML = connSta;
+	var fTryConnect = function () {
+
+		connSta = deviceComment + ' 嘗試連線...' + initRow;
+
+		element.style.display = 'block';
+		element.style.color = 'gray';
+		element.style.backgroundColor = 'black';
+		element.style.borderColor = 'green';
+		element.innerHTML = connSta;
+	};
 
 	var fUpdate = function () {
 
@@ -245,7 +250,12 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 					connSta = deviceComment + ' 連線中斷！' + initRow;
 					element.innerHTML = connSta;
 
-					setTimeout(function () { fUpdate(); }, 3000);
+					setTimeout(function () {
+
+						fUpdate();
+						fTryConnect();
+
+					}, 3000);
 				}
 
 			}, function (response) {
@@ -261,10 +271,16 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 			connSta = deviceComment + ' 發生錯誤！' + initRow;
 			element.innerHTML = connSta;
 
-			setTimeout(function () { fUpdate(); }, 3000);
+			setTimeout(function () {
+
+				fUpdate();
+				fTryConnect();
+
+			}, 3000);
 		}
 	};
 
+	fTryConnect();
 	fUpdate();
 
 	setTimeout(function () {
@@ -274,7 +290,12 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 			connSta = deviceComment + ' 連線失敗！' + initRow;
 			element.innerHTML = connSta;
 
-			setTimeout(function () { fUpdate(); }, 3000);
+			setTimeout(function () {
+
+				fUpdate();
+				fTryConnect();
+
+			}, 3000);
 		}
 
 	}, 10000);
