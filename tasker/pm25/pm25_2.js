@@ -54,6 +54,7 @@ var Refresh = function () {
 function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 	var isReady = false;
+	var lastDateTime = null;
 	var element = document.getElementById(elementId);
 	var initRow = ([('<br/>'), ('<br/>'), ('<br/>'), ('<br/>')].join(''));
 	var connSta = deviceComment + ' 嘗試連線...' + initRow;
@@ -92,6 +93,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 					var timeStr = null;
 					var pm25Value = null;
 					var pm10Value = null;
+					var pm25Value60Max = null;
 
 					// (4)[量測時間]
 					isOK = (isOK && (row[3] != null && row[3].length > 0));
@@ -126,6 +128,14 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 					if (isOK) {
 
 						pm10Value = row[12];
+					}
+
+					// (1)[近60筆PM2.5最大值]
+					isOK = (isOK && (row[0] != null && row[0].length > 0 && !isNaN(row[0])));
+
+					if (isOK) {
+
+						pm25Value60Max = row[0];
 					}
 
 					if (isOK) {
@@ -207,9 +217,11 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 							([
 								connSta, ('<br/>'),
 								dateStr, ('&nbsp;'), timeStr, ('<br/>'),
-								'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('<br/>'),
+								'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('&nbsp;'), 'Max=[', pm25Value60Max, ']', ('<br/>'),
 								'PM1.0=[', pm10Value, ']'
 							].join(''));
+
+						lastDateTime = dateStr + ' ' + timeStr;
 					}
 					else {
 
