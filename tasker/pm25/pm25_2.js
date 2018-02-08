@@ -7,6 +7,9 @@ var SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly';
 var WSHOM1_DeviceComment = 'WSHOM1';
 var WSHOM1_DocId = '1FOtBgVQuru_b91fbc1VyErKqqGL67EuhulgQPqjfCqU';
 var WSHOM1_SheetRange = 'TestValue!A1:M2';
+var WSHOM2_DeviceComment = 'WSHOM2';
+var WSHOM2_DocId = '1-Nvc0tMEwlzhPeva8XXTNky9TXB5teVTOi6i_Avjb3I';
+var WSHOM2_SheetRange = 'TestValue!A1:M2';
 
 function handleClientLoad() {
 
@@ -45,6 +48,7 @@ function updateSigninStatus(isSignedIn) {
 var Refresh = function () {
 
 	RefreshViewerElement('demo-area-01-show', WSHOM1_DeviceComment, WSHOM1_DocId, WSHOM1_SheetRange);
+	RefreshViewerElement('demo-area-02-show', WSHOM2_DeviceComment, WSHOM2_DocId, WSHOM2_SheetRange);
 };
 
 function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
