@@ -203,7 +203,13 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 							element.style.borderColor = 'gray';
 						}
 
-						element.innerHTML = ([connSta, ('<br/>'), dateStr, ('&nbsp;'), timeStr, ('<br/>'), 'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('<br/>'), 'PM1.0=[', pm10Value, ']'].join(''));
+						element.innerHTML =
+							([
+								connSta, ('<br/>'),
+								dateStr, ('&nbsp;'), timeStr, ('<br/>'),
+								'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('<br/>'),
+								'PM1.0=[', pm10Value, ']'
+							].join(''));
 					}
 					else {
 
@@ -234,4 +240,16 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 	};
 
 	fUpdate();
+
+	setTimeout(function () {
+
+		if (!isReady) {
+
+			connSta = deviceComment + ' 連線失敗！' + initRow;
+			element.innerHTML = connSta;
+
+			setTimeout(function () { fUpdate(); }, 3000);
+		}
+
+	}, 10000);
 }
