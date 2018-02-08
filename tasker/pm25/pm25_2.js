@@ -254,6 +254,13 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 		}
 		catch (ex) {
 
+			element.style.color = 'gray';
+			element.style.backgroundColor = 'black';
+			element.style.borderColor = 'green';
+
+			connSta = deviceComment + ' 資料中斷！' + initRow;
+			element.innerHTML = connSta;
+
 			setTimeout(function () { fUpdate(); }, 3000);
 		}
 	};
