@@ -258,7 +258,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 			element.style.backgroundColor = 'black';
 			element.style.borderColor = 'green';
 
-			connSta = deviceComment + ' 資料中斷！' + initRow;
+			connSta = deviceComment + ' 發生錯誤！' + initRow;
 			element.innerHTML = connSta;
 
 			setTimeout(function () { fUpdate(); }, 3000);
