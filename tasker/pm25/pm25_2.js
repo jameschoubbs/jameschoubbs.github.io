@@ -217,7 +217,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 							([
 								connSta, ('<br/>'),
 								dateStr, ('&nbsp;'), timeStr, ('<br/>'),
-								'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('&nbsp;'), 'Max=[', pm25Value60Max, ']', ('<br/>'),
+								'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('&nbsp;'), '<span name="pm25max">Max=[', pm25Value60Max, ']</span>', ('<br/>'),
 								'PM1.0=[', pm10Value, ']'
 							].join(''));
 
