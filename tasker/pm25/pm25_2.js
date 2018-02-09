@@ -250,9 +250,9 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 					setTimeout(function () {
 
-						fUpdate();
 						fTryConnect();
-
+						fUpdate();
+					
 					}, 3000);
 				}
 
@@ -267,9 +267,9 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 				setTimeout(function () {
 
-					fUpdate();
 					fTryConnect();
-
+					fUpdate();
+				
 				}, 3000);
 			});
 		}
@@ -284,9 +284,9 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 			setTimeout(function () {
 
-				fUpdate();
 				fTryConnect();
-
+				fUpdate();
+			
 			}, 3000);
 		}
 	};
@@ -303,9 +303,9 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 			setTimeout(function () {
 
-				fUpdate();
 				fTryConnect();
-
+				fUpdate();
+			
 			}, 3000);
 		}
 
