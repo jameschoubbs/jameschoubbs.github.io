@@ -231,9 +231,6 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 							lastDateTime = dateStr + ' ' + timeStr;
 						}
-						else {
-
-						}
 					}
 
 					setTimeout(function () {
@@ -248,7 +245,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 					element.style.backgroundColor = 'black';
 					element.style.borderColor = 'green';
 
-					connSta = deviceComment + ' 連線中斷！' + initRow;
+					connSta = deviceComment + ' 資料異常！' + initRow;
 					element.innerHTML = connSta;
 
 					setTimeout(function () {
