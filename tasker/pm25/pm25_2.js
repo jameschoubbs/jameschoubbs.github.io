@@ -56,7 +56,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 	var isReady = false;
 	var lastDateTime = null;
 	var element = document.getElementById(elementId);
-	var initRow = ([('<br/>'), ('<br/>'), ('<br/>'), ('<br/>')].join(''));
+	var initRow = ([('<br/>'), ('<br/>'), ('<br/>'), ('<span name="pm25max"></span><br/>'), ('<br/>')].join(''));
 	var connSta = null;
 
 	var fTryConnect = function () {
@@ -224,7 +224,8 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 								([
 									connSta, ('<br/>'),
 									dateStr, ('&nbsp;'), timeStr, ('<br/>'),
-									'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('&nbsp;'), '<span name="pm25max">Max=[', pm25Value60Max, ']</span>', ('<br/>'),
+									'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('&nbsp;'), ('<br/>'),
+									'<span name="pm25max">Max=[', pm25Value60Max, ']</span>', ('<br/>'),
 									'PM1.0=[', pm10Value, ']'
 								].join(''));
 
@@ -260,6 +261,19 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 			}, function (response) {
 
+				element.style.color = 'gray';
+				element.style.backgroundColor = 'black';
+				element.style.borderColor = 'green';
+
+				connSta = deviceComment + ' 讀取異常！' + initRow;
+				element.innerHTML = connSta;
+
+				setTimeout(function () {
+
+					fUpdate();
+					fTryConnect();
+
+				}, 3000);
 			});
 		}
 		catch (ex) {
