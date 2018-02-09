@@ -101,6 +101,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 						var pm25Value = null;
 						var pm10Value = null;
 						var pm25Value60Max = null;
+						var dataCount = null;
 
 						// (4)[量測時間]
 						isOK = (isOK && (row[3] != null && row[3].length > 0));
@@ -143,6 +144,14 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 						if (isOK) {
 
 							pm25Value60Max = row[0];
+						}
+
+						// (5)[量測點數]
+						isOK = (isOK && (row[5] != null && row[5].length > 0 && !isNaN(row[5])));
+
+						if (isOK) {
+
+							dataCount = row[5];
 						}
 
 						if (isOK) {
@@ -224,7 +233,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 								([
 									connSta, ('<br/>'),
 									dateStr, ('&nbsp;'), timeStr, ('<br/>'),
-									'<span name="pm25max">Max=[', pm25Value60Max, ']</span>', ('<br/>'),
+									'<span name="pm25max">Max60=[', pm25Value60Max, '], Rows=[', dataCount, ']</span>', ('<br/>'),
 									'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('&nbsp;'), ('<br/>'),
 									'PM1.0=[', pm10Value, ']'
 								].join(''));
@@ -252,7 +261,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 						fTryConnect();
 						fUpdate();
-					
+
 					}, 3000);
 				}
 
@@ -269,7 +278,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 					fTryConnect();
 					fUpdate();
-				
+
 				}, 3000);
 			});
 		}
@@ -286,7 +295,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 				fTryConnect();
 				fUpdate();
-			
+
 			}, 3000);
 		}
 	};
@@ -305,7 +314,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 				fTryConnect();
 				fUpdate();
-			
+
 			}, 3000);
 		}
 
