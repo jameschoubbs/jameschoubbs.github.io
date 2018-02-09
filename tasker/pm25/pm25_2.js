@@ -147,11 +147,11 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 						}
 
 						// (5)[量測點數]
-						isOK = (isOK && (row[5] != null && row[5].length > 0 && !isNaN(row[5])));
+						isOK = (isOK && (row[4] != null && row[4].length > 0 && !isNaN(row[4])));
 
 						if (isOK) {
 
-							dataCount = row[5];
+							dataCount = row[4];
 						}
 
 						if (isOK) {
