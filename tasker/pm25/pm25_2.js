@@ -161,72 +161,52 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 							if (pm25Value >= 0 && pm25Value <= 11) {
 
 								pm25Text = '(低)';
-								element.style.color = '#000';
-								element.style.backgroundColor = '#9cff9c';
-								element.style.borderColor = 'gray';
+								element.className = 'value0to11';
 							}
 							else if (pm25Value >= 12 && pm25Value <= 23) {
 
 								pm25Text = '(低)';
-								element.style.color = '#000';
-								element.style.backgroundColor = '#31ff00';
-								element.style.borderColor = 'gray';
+								element.className = 'value12to23';
 							}
 							else if (pm25Value >= 24 && pm25Value <= 35) {
 
 								pm25Text = '(低)';
-								element.style.color = '#000';
-								element.style.backgroundColor = '#31cf00';
-								element.style.borderColor = 'gray';
+								element.className = 'value24to35';
 							}
 							else if (pm25Value >= 36 && pm25Value <= 41) {
 
 								pm25Text = '(中)';
-								element.style.color = '#000';
-								element.style.backgroundColor = 'yellow';
-								element.style.borderColor = 'gray';
+								element.className = 'value36to41';
 							}
 							else if (pm25Value >= 42 && pm25Value <= 47) {
 
 								pm25Text = '(中)';
-								element.style.color = '#000';
-								element.style.backgroundColor = 'ffcf00';
-								element.style.borderColor = 'gray';
+								element.className = 'value42to47';
 							}
 							else if (pm25Value >= 48 && pm25Value <= 53) {
 
 								pm25Text = '(中)';
-								element.style.color = '#000';
-								element.style.backgroundColor = '#ff9a00';
-								element.style.borderColor = 'gray';
+								element.className = 'value48to53';
 							}
 							else if (pm25Value >= 54 && pm25Value <= 58) {
 
 								pm25Text = '(高)';
-								element.style.color = '#000';
-								element.style.backgroundColor = '#ff6464';
-								element.style.borderColor = 'gray';
+								element.className = 'value54to58';
 							}
 							else if (pm25Value >= 59 && pm25Value <= 64) {
 
 								pm25Text = '(高)';
-								element.style.color = 'gray';
-								element.style.backgroundColor = '#red';
-								element.style.borderColor = 'gray';
+								element.className = 'value59to64';
 							}
 							else if (pm25Value >= 65 && pm25Value <= 70) {
 
 								pm25Text = '(高)';
-								element.style.color = 'gray';
-								element.style.backgroundColor = '#900';
-								element.style.borderColor = 'gray';
+								element.className = 'value65to70';
 							}
 							else if (pm25Value >= 71) {
 
 								pm25Text = '(非常高)';
-								element.style.color = 'white';
-								element.style.backgroundColor = '#ce30ff';
-								element.style.borderColor = 'gray';
+								element.className = 'value71to';
 							}
 
 							element.innerHTML =

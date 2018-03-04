@@ -17,6 +17,66 @@ body {
 	height: 260px;
 }
 
+.value0to11 {
+	color: '#000';
+	background-color: '#9cff9c';
+	border-color: 'gray';
+}
+
+.value12to23 {
+	color: '#000';
+	background-color: '#31ff00';
+	border-color: 'gray';
+}
+
+.value24to35 {
+	color: '#000';
+	background-color: '#31cf00';
+	border-color: 'gray';
+}
+
+.value36to41 {
+	color: '#000';
+	background-color: 'yellow';
+	border-color: 'gray';
+}
+
+.value42to47 {
+	color: '#000';
+	background-color: '#ffcf00';
+	border-color: 'gray';
+}
+
+.value48to53 {
+	color: '#000';
+	background-color: '#ff9a00';
+	border-color: 'gray';
+}
+
+.value54to58 {
+	color: '#000';
+	background-color: '#ff6464';
+	border-color: 'gray';
+}
+
+.value59to64 {
+	color: 'gray';
+	background-color: 'red';
+	border-color: 'gray';
+}
+
+.value65to70 {
+	color: 'gray';
+	background-color: '#900';
+	border-color: 'gray';
+}
+
+.value71to {
+	color: 'white';
+	background-color: '#ce30ff';
+	border-color: 'gray';
+}
+
 [name=pm25max] {
 	font-size: 22px;
 }
