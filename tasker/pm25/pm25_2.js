@@ -64,9 +64,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 		connSta = deviceComment + ' 嘗試連線...' + initRow;
 
 		element.style.display = 'block';
-		element.style.color = 'gray';
-		element.style.backgroundColor = 'black';
-		element.style.borderColor = 'green';
+		element.className = 'connecting';
 		element.innerHTML = connSta;
 	};
 
@@ -230,9 +228,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 				}
 				else {
 
-					element.style.color = 'gray';
-					element.style.backgroundColor = 'black';
-					element.style.borderColor = 'green';
+					element.className = 'connecting';
 
 					connSta = deviceComment + ' 資料異常！' + initRow;
 					element.innerHTML = connSta;
@@ -247,9 +243,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 			}, function (response) {
 
-				element.style.color = 'gray';
-				element.style.backgroundColor = 'black';
-				element.style.borderColor = 'green';
+				element.className = 'connecting';
 
 				connSta = deviceComment + ' 讀取異常！' + initRow;
 				element.innerHTML = connSta;
@@ -264,9 +258,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 		}
 		catch (ex) {
 
-			element.style.color = 'gray';
-			element.style.backgroundColor = 'black';
-			element.style.borderColor = 'green';
+			element.className = 'connecting';
 
 			connSta = deviceComment + ' 發生錯誤！' + initRow;
 			element.innerHTML = connSta;
