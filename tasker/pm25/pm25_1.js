@@ -67,7 +67,7 @@ window.addEventListener('load', function (e) {
 
 			isReady = true;
 
-			board.samplingInterval = 990;
+			board.samplingInterval = 50;
 
 			board.on('error', function (err) {
 
