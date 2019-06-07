@@ -48,12 +48,6 @@ function get_time(t) {
 	return varNow;
 }
 
-function reqest_fan_work_5minutes() {
-  var req = new XMLHttpRequest();
-  req.open('GET', 'http://jamesrm:rmjames1243@jamesjou88rm.duckdns.org:7787/send?deviceMac=b4%3A43%3A0d%3A38%3Abd%3Aac&codeId=10');
-  req.send();
-}
-
 window.addEventListener('load', function (e) {
 
 	var fBoardToRun = function (elementId, deviceId, deviceComment, sheetUrl, sheetName) {
@@ -98,8 +92,6 @@ window.addEventListener('load', function (e) {
 			myData.sheetName = sheetName;
 
 			g3.read(function (evt) {
-        
-        reqest_fan_work_5minutes();
         
 				var YYYY = String('') + String(get_date("y"));
 				var MM = String('') + String(get_date("m"));
