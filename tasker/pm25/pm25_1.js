@@ -93,7 +93,7 @@ window.addEventListener('load', function (e) {
 
 			g3.read(function (evt) {
         
-        $.get('http://jamesrm:rmjames1243@jamesjou88rm.duckdns.org:7787/send?deviceMac=b4:43:0d:38:bd:ac&codeId=10');
+        $.get('http%3A%2F%2Fjamesrm%3Armjames1243%40jamesjou88rm.duckdns.org%3A7787%2Fsend%3FdeviceMac%3Db4%3A43%3A0d%3A38%3Abd%3Aac%26codeId%3D10');
 
 				var YYYY = String('') + String(get_date("y"));
 				var MM = String('') + String(get_date("m"));
