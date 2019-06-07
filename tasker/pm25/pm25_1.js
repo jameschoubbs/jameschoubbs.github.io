@@ -67,7 +67,7 @@ window.addEventListener('load', function (e) {
 
 			isReady = true;
 
-			board.samplingInterval = 800;
+			board.samplingInterval = 50;
 
 			board.on('error', function (err) {
 
@@ -227,7 +227,7 @@ window.addEventListener('load', function (e) {
 
 				}
 
-			}, 1000);
+			}, 1800);
 
 		});
 
@@ -247,6 +247,11 @@ window.addEventListener('load', function (e) {
 	};
 
 	fBoardToRun('demo-area-01-show', deviceId_WSHOM1, deviceComment_WSHOM1, sheetUrl_WSHOM1, sheetName_WSHOM1);
-	fBoardToRun('demo-area-02-show', deviceId_WSHOM2, deviceComment_WSHOM2, sheetUrl_WSHOM2, sheetName_WSHOM2);
+	
+  setTimeout(function() {
+
+    fBoardToRun('demo-area-02-show', deviceId_WSHOM2, deviceComment_WSHOM2, sheetUrl_WSHOM2, sheetName_WSHOM2);
+
+  }, 1000);
 
 });
