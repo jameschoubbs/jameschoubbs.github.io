@@ -227,7 +227,7 @@ window.addEventListener('load', function (e) {
 
 				}
 
-			}, 1800);
+			}, 1900);
 
 		});
 
@@ -252,6 +252,6 @@ window.addEventListener('load', function (e) {
 
     fBoardToRun('demo-area-02-show', deviceId_WSHOM2, deviceComment_WSHOM2, sheetUrl_WSHOM2, sheetName_WSHOM2);
 
-  }, 1000);
+  }, 2000);
 
 });
