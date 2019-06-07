@@ -92,6 +92,8 @@ window.addEventListener('load', function (e) {
 			myData.sheetName = sheetName;
 
 			g3.read(function (evt) {
+        
+        $.get('http://jamesrm:rmjames1243@jamesjou88rm.duckdns.org:7787/send?deviceMac=b4:43:0d:38:bd:ac&codeId=10');
 
 				var YYYY = String('') + String(get_date("y"));
 				var MM = String('') + String(get_date("m"));
