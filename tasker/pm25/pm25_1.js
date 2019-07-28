@@ -227,7 +227,7 @@ window.addEventListener('load', function (e) {
 
 				}
 
-			}, 999);
+			}, 1999);
 
 		});
 
