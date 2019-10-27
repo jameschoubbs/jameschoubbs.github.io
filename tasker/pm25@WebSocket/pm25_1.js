@@ -121,10 +121,13 @@ window.addEventListener('load', function (e) {
                 var readInterval = 4899;
                 var checkInterval = readInterval + 10000;
                 var readData = null;
+                var checkCount = 0;
 
                 var f3ReadData = function () {
 
                     g3.read(function (evt) {
+
+                        checkCount = 0;
 
                         var YYYY = String('') + String(get_date("y"));
                         var MM = String('') + String(get_date("m"));
@@ -293,10 +296,19 @@ window.addEventListener('load', function (e) {
 
                                     setTimeout(function () {
 
-                                        connSta = options.deviceComment + ' 嘗試讀取...' + initRow;
-                                        element.innerHTML = connSta;
+                                        if (checkCount < 10) {
 
-                                        f3ReadData();
+                                            checkCount++;
+
+                                            connSta = options.deviceComment + ' 嘗試讀取...' + initRow;
+                                            element.innerHTML = connSta;
+
+                                            f3ReadData();
+                                        }
+                                        else {
+
+                                            f2PrepareBorad();
+                                        }
 
                                     }, 3000);
                                 }
