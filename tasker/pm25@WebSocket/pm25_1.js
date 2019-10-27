@@ -314,7 +314,7 @@ window.addEventListener('load', function (e) {
                                 }
                                 else {
 
-                                    setTimeout(f4ReadCheck, 0);
+                                    setTimeout(f4ReadCheck, checkInterval);
                                 }
                             }
 
