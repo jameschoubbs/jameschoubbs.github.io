@@ -22,19 +22,24 @@ function get_date(t) {
     if (t == "ymd") {
 
         varNow = varYear + "/" + varMonth + "/" + varDate;
-    } else if (t == "mdy") {
+    }
+    else if (t == "mdy") {
 
         varNow = varMonth + "/" + varDate + "/" + varYear;
-    } else if (t == "dmy") {
+    }
+    else if (t == "dmy") {
 
         varNow = varDate + "/" + varMonth + "/" + varYear;
-    } else if (t == "y") {
+    }
+    else if (t == "y") {
 
         varNow = varYear;
-    } else if (t == "m") {
+    }
+    else if (t == "m") {
 
         varNow = varMonth;
-    } else if (t == "d") {
+    }
+    else if (t == "d") {
 
         varNow = varDate;
     }
@@ -54,13 +59,16 @@ function get_time(t) {
     if (t == "hms") {
 
         varNow = varHours + ":" + varMinutes + ":" + varSeconds;
-    } else if (t == "h") {
+    }
+    else if (t == "h") {
 
         varNow = varHours;
-    } else if (t == "m") {
+    }
+    else if (t == "m") {
 
         varNow = varMinutes;
-    } else if (t == "s") {
+    }
+    else if (t == "s") {
 
         varNow = varSeconds;
     }
@@ -94,7 +102,7 @@ window.addEventListener('load', function (e) {
 
                 isReady = true;
 
-                board.samplingInterval = 4899;
+                board.samplingInterval = 2399;
 
                 board.on('error', function (err) {
 
@@ -118,7 +126,7 @@ window.addEventListener('load', function (e) {
                 myData.sheetUrl = options.sheetUrl;
                 myData.sheetName = options.sheetName;
 
-                var readInterval = 4899;
+                var readInterval = board.samplingInterval;
                 var checkInterval = readInterval + 10000;
                 var readData = null;
                 var checkCount = 0;
