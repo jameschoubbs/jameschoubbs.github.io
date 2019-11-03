@@ -76,9 +76,20 @@ function get_time(t) {
     return varNow;
 }
 
-function isValid_PM2_5(value) {
+function isValid_PM2_5(value, lastValue) {
 
-    return !(value == 0 || value == 4352);
+    var isValid = false;
+
+    if (value !=0 && lastValue != 0) {
+
+        isValid = (value < lastValue * 10);
+    }
+    else if (value !=0) {
+
+        isValid = true;
+    }
+
+    return isValid;
 }
 
 window.addEventListener('load', function (e) {
@@ -185,7 +196,7 @@ window.addEventListener('load', function (e) {
 
                         options.readCount++;
 
-                        if (isValid_PM2_5(PM2_5)) {
+                        if (isValid_PM2_5(PM2_5, options.lastPM25Value)) {
 
                             options.okCount++;
 
@@ -285,6 +296,8 @@ window.addEventListener('load', function (e) {
                             ].join(''));
                         }
 
+                        options.lastPM25Value = PM2_5;
+
                     }, readInterval);
 
                     var f4ReadCheck = function () {
@@ -359,7 +372,8 @@ window.addEventListener('load', function (e) {
         sheetName: sheetName_WSHOM1,
         deviceIP: deviceIP_WSHOM1,
         readCount: 0,
-        okCount: 0
+        okCount: 0,
+        lastPM25Value: 0
     };
 
     var dev2Opts = {
@@ -370,10 +384,10 @@ window.addEventListener('load', function (e) {
         sheetName: sheetName_WSHOM2,
         deviceIP: deviceIP_WSHOM2,
         readCount: 0,
-        okCount: 0
+        okCount: 0,
+        lastPM25Value: 0
     };
 
     fBoardToRun(dev1Opts);
     fBoardToRun(dev2Opts);
-
 });
