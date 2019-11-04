@@ -76,17 +76,22 @@ function get_time(t) {
     return varNow;
 }
 
-function isValid_PM2_5(value, lastValue) {
+function isValid_PM2_5(value, lastValue, invalidCount) {
 
     var isValid = false;
 
     if (value !=0 && lastValue != 0) {
 
-        isValid = (value < lastValue * 10);
+        isValid = (value < lastValue * 100);
     }
     else if (value !=0) {
 
         isValid = true;
+    }
+
+    if (!isValid) {
+
+        isValid = (invalidCount > 2);
     }
 
     return isValid;
@@ -196,7 +201,10 @@ window.addEventListener('load', function (e) {
 
                         options.readCount++;
 
-                        if (isValid_PM2_5(PM2_5, options.lastPM25Value)) {
+                        if (isValid_PM2_5(PM2_5, options.lastPM25Value, options.invalidCount)) {
+
+                            options.lastPM25Value = PM2_5;
+                            options.invalidCount = 0;
 
                             options.okCount++;
 
@@ -288,6 +296,8 @@ window.addEventListener('load', function (e) {
                         }
                         else {
 
+                            options.invalidCount++;
+
                             element.innerHTML = ([
                                 connSta, ('<br/>'), DateStr, ('&nbsp;'), timeStr, ('<br/>'),
                                 'PM2.5=[', PM2_5, ']', ('&nbsp;'), '(讀值異常)', ('<br/>'),
@@ -295,8 +305,6 @@ window.addEventListener('load', function (e) {
                                 '<span name="readCount">', options.okCount, '/', options.readCount, '</span>'
                             ].join(''));
                         }
-
-                        options.lastPM25Value = PM2_5;
 
                     }, readInterval);
 
@@ -373,7 +381,8 @@ window.addEventListener('load', function (e) {
         deviceIP: deviceIP_WSHOM1,
         readCount: 0,
         okCount: 0,
-        lastPM25Value: 0
+        lastPM25Value: 0,
+        invalidCount: 0
     };
 
     var dev2Opts = {
@@ -385,7 +394,8 @@ window.addEventListener('load', function (e) {
         deviceIP: deviceIP_WSHOM2,
         readCount: 0,
         okCount: 0,
-        lastPM25Value: 0
+        lastPM25Value: 0,
+        invalidCount: 0
     };
 
     fBoardToRun(dev1Opts);
