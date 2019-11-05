@@ -80,7 +80,7 @@ function isValid_PM2_5(value, lastValue, invalidCount) {
 
     if (value != 0 && lastValue != 0) {
 
-        isValid = (value < lastValue * 20);
+        isValid = (value < lastValue * 80);
     }
     else if (value != 0) {
 
