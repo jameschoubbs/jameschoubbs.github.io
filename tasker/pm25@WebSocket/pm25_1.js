@@ -12,12 +12,11 @@ var deviceIP_WSHOM2 = '192.168.1.124';
 
 function get_date(t) {
 
-    var varDay = new Date(),
-        varYear = varDay.getFullYear(),
-        varMonth = varDay.getMonth() + 1,
-        varDate = varDay.getDate();
-
-    var varNow;
+    var varDay = new Date();
+    var varYear = varDay.getFullYear();
+    var varMonth = varDay.getMonth() + 1;
+    var varDate = varDay.getDate();
+    var varNow = null;
 
     if (t == "ymd") {
 
@@ -49,12 +48,11 @@ function get_date(t) {
 
 function get_time(t) {
 
-    var varTime = new Date(),
-        varHours = varTime.getHours(),
-        varMinutes = varTime.getMinutes(),
-        varSeconds = varTime.getSeconds();
-
-    var varNow;
+    var varTime = new Date();
+    var varHours = varTime.getHours();
+    var varMinutes = varTime.getMinutes();
+    var varSeconds = varTime.getSeconds();
+    var varNow = null;
 
     if (t == "hms") {
 
@@ -80,11 +78,11 @@ function isValid_PM2_5(value, lastValue, invalidCount) {
 
     var isValid = false;
 
-    if (value !=0 && lastValue != 0) {
+    if (value != 0 && lastValue != 0) {
 
-        isValid = (value < lastValue * 100);
+        isValid = (value < lastValue * 20);
     }
-    else if (value !=0) {
+    else if (value != 0) {
 
         isValid = true;
     }
