@@ -89,7 +89,7 @@ function isValid_PM2_5(value, lastValue, invalidCount) {
 
     if (!isValid) {
 
-        isValid = (invalidCount > 2);
+        isValid = (invalidCount > 10);
     }
 
     return isValid;
