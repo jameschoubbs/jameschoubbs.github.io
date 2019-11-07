@@ -142,12 +142,14 @@ window.addEventListener('load', function (e) {
 
                 var readInterval = board.samplingInterval;
                 var checkInterval = readInterval + 10000;
-                var readData = null;
+                var lastReadTime = null;
                 var checkCount = 0;
 
                 var f3ReadData = function () {
 
                     g3.read(function (evt) {
+
+                        options.readCount++;
 
                         checkCount = 0;
 
@@ -190,136 +192,137 @@ window.addEventListener('load', function (e) {
 
                         var timeStr = [HH, ':', MI, ':', SS].join('');
 
-                        readData = timeStr;
+                        if (lastReadTime != timeStr) {
 
-                        connSta = options.deviceComment + ' 正在監測中...';
+                            lastReadTime = timeStr;
 
-                        var PM2_5 = g3.pm25;
-                        var PM1_0 = g3.pm10;
+                            connSta = options.deviceComment + ' 正在監測中...';
 
-                        options.readCount++;
+                            var PM2_5 = g3.pm25;
+                            var PM1_0 = g3.pm10;
 
-                        if (isValid_PM2_5(PM2_5, options.lastPM25Value, options.invalidCount)) {
+                            if (isValid_PM2_5(PM2_5, options.lastPM25Value, options.invalidCount)) {
 
-                            options.lastPM25Value = PM2_5;
-                            options.invalidCount = 0;
+                                options.lastPM25Value = PM2_5;
+                                options.invalidCount = 0;
 
-                            options.okCount++;
+                                options.okCount++;
 
-                            myData.column0 = [DateStr, ' ', timeStr].join('');
-                            myData.column1 = PM2_5;
-                            myData.column2 = PM1_0;
+                                myData.column0 = [DateStr, ' ', timeStr].join('');
+                                myData.column1 = PM2_5;
+                                myData.column2 = PM1_0;
 
-                            writeSheetData(myData);
+                                writeSheetData(myData);
 
-                            var PM2_5_Text = '(無)';
+                                var PM2_5_Text = '(無)';
 
-                            if (PM2_5 >= 0 && PM2_5 <= 11) {
+                                if (PM2_5 >= 0 && PM2_5 <= 11) {
 
-                                PM2_5_Text = '(低)';
-                                element.style.color = '#000';
-                                element.style.backgroundColor = '#9cff9c';
-                                element.style.borderColor = 'gray';
+                                    PM2_5_Text = '(低)';
+                                    element.style.color = '#000';
+                                    element.style.backgroundColor = '#9cff9c';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 12 && PM2_5 <= 23) {
+
+                                    PM2_5_Text = '(低)';
+                                    element.style.color = '#000';
+                                    element.style.backgroundColor = '#31ff00';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 24 && PM2_5 <= 35) {
+
+                                    PM2_5_Text = '(低)';
+                                    element.style.color = '#000';
+                                    element.style.backgroundColor = '#31cf00';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 36 && PM2_5 <= 41) {
+
+                                    PM2_5_Text = '(中)';
+                                    element.style.color = '#000';
+                                    element.style.backgroundColor = 'yellow';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 42 && PM2_5 <= 47) {
+
+                                    PM2_5_Text = '(中)';
+                                    element.style.color = '#000';
+                                    element.style.backgroundColor = 'ffcf00';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 48 && PM2_5 <= 53) {
+
+                                    PM2_5_Text = '(中)';
+                                    element.style.color = '#000';
+                                    element.style.backgroundColor = '#ff9a00';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 54 && PM2_5 <= 58) {
+
+                                    PM2_5_Text = '(高)';
+                                    element.style.color = '#000';
+                                    element.style.backgroundColor = '#ff6464';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 59 && PM2_5 <= 64) {
+
+                                    PM2_5_Text = '(高)';
+                                    element.style.color = 'gray';
+                                    element.style.backgroundColor = '#red';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 65 && PM2_5 <= 70) {
+
+                                    PM2_5_Text = '(高)';
+                                    element.style.color = 'gray';
+                                    element.style.backgroundColor = '#900';
+                                    element.style.borderColor = 'gray';
+                                }
+                                else if (PM2_5 >= 71) {
+
+                                    PM2_5_Text = '(非常高)';
+                                    element.style.color = 'white';
+                                    element.style.backgroundColor = '#ce30ff';
+                                    element.style.borderColor = 'gray';
+                                }
+
+                                element.innerHTML = ([
+                                    connSta, ('<br/>'), DateStr, ('&nbsp;'), timeStr, ('<br/>'),
+                                    'PM2.5=[', PM2_5, ']', ('&nbsp;'), PM2_5_Text, ('<br/>'),
+                                    'PM1.0=[', PM1_0, ']', ('<br/>'),
+                                    '<span name="readCount">', options.okCount, '/', options.readCount, '</span>'
+                                ].join(''));
                             }
-                            else if (PM2_5 >= 12 && PM2_5 <= 23) {
+                            else {
 
-                                PM2_5_Text = '(低)';
-                                element.style.color = '#000';
-                                element.style.backgroundColor = '#31ff00';
-                                element.style.borderColor = 'gray';
+                                options.invalidCount++;
+
+                                element.innerHTML = ([
+                                    connSta, ('<br/>'), DateStr, ('&nbsp;'), timeStr, ('<br/>'),
+                                    'PM2.5=[', PM2_5, ']', ('&nbsp;'), '(讀值異常)', ('<br/>'),
+                                    'PM1.0=[', PM1_0, ']', ('<br/>'),
+                                    '<span name="readCount">', options.okCount, '/', options.readCount, '</span>'
+                                ].join(''));
                             }
-                            else if (PM2_5 >= 24 && PM2_5 <= 35) {
-
-                                PM2_5_Text = '(低)';
-                                element.style.color = '#000';
-                                element.style.backgroundColor = '#31cf00';
-                                element.style.borderColor = 'gray';
-                            }
-                            else if (PM2_5 >= 36 && PM2_5 <= 41) {
-
-                                PM2_5_Text = '(中)';
-                                element.style.color = '#000';
-                                element.style.backgroundColor = 'yellow';
-                                element.style.borderColor = 'gray';
-                            }
-                            else if (PM2_5 >= 42 && PM2_5 <= 47) {
-
-                                PM2_5_Text = '(中)';
-                                element.style.color = '#000';
-                                element.style.backgroundColor = 'ffcf00';
-                                element.style.borderColor = 'gray';
-                            }
-                            else if (PM2_5 >= 48 && PM2_5 <= 53) {
-
-                                PM2_5_Text = '(中)';
-                                element.style.color = '#000';
-                                element.style.backgroundColor = '#ff9a00';
-                                element.style.borderColor = 'gray';
-                            }
-                            else if (PM2_5 >= 54 && PM2_5 <= 58) {
-
-                                PM2_5_Text = '(高)';
-                                element.style.color = '#000';
-                                element.style.backgroundColor = '#ff6464';
-                                element.style.borderColor = 'gray';
-                            }
-                            else if (PM2_5 >= 59 && PM2_5 <= 64) {
-
-                                PM2_5_Text = '(高)';
-                                element.style.color = 'gray';
-                                element.style.backgroundColor = '#red';
-                                element.style.borderColor = 'gray';
-                            }
-                            else if (PM2_5 >= 65 && PM2_5 <= 70) {
-
-                                PM2_5_Text = '(高)';
-                                element.style.color = 'gray';
-                                element.style.backgroundColor = '#900';
-                                element.style.borderColor = 'gray';
-                            }
-                            else if (PM2_5 >= 71) {
-
-                                PM2_5_Text = '(非常高)';
-                                element.style.color = 'white';
-                                element.style.backgroundColor = '#ce30ff';
-                                element.style.borderColor = 'gray';
-                            }
-
-                            element.innerHTML = ([
-                                connSta, ('<br/>'), DateStr, ('&nbsp;'), timeStr, ('<br/>'),
-                                'PM2.5=[', PM2_5, ']', ('&nbsp;'), PM2_5_Text, ('<br/>'),
-                                'PM1.0=[', PM1_0, ']', ('<br/>'),
-                                '<span name="readCount">', options.okCount, '/', options.readCount, '</span>'
-                            ].join(''));
-                        }
-                        else {
-
-                            options.invalidCount++;
-
-                            element.innerHTML = ([
-                                connSta, ('<br/>'), DateStr, ('&nbsp;'), timeStr, ('<br/>'),
-                                'PM2.5=[', PM2_5, ']', ('&nbsp;'), '(讀值異常)', ('<br/>'),
-                                'PM1.0=[', PM1_0, ']', ('<br/>'),
-                                '<span name="readCount">', options.okCount, '/', options.readCount, '</span>'
-                            ].join(''));
                         }
 
                     }, readInterval);
 
                     var f4ReadCheck = function () {
 
-                        var lastData = readData;
+                        var lastData = lastReadTime;
 
                         setTimeout(function () {
 
                             if (isReady) {
 
-                                if (lastData == readData) {
+                                if (lastData == lastReadTime) {
 
                                     connSta = options.deviceComment + ' 讀取失敗！' + initRow;
                                     element.innerHTML = connSta;
 
-                                    lastData = readData;
+                                    lastData = lastReadTime;
 
                                     setTimeout(function () {
 
