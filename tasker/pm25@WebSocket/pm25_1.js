@@ -129,7 +129,7 @@ window.addEventListener('load', function (e) {
 
                         isReady = true;
 
-                        board.samplingInterval = 999;
+                        board.samplingInterval = 1999;
 
                         board.on('error', function (err) {
 
