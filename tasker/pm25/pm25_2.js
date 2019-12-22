@@ -75,7 +75,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 			gapi.client.sheets.spreadsheets.values.get({
 
 				spreadsheetId: docId,
-				range: sheetRange,
+				range: sheetRange
 
 			}).then(function (response) {
 
@@ -136,7 +136,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 							pm10Value = row[12];
 						}
 
-						// (1)[近60筆PM2.5最大值]
+						// (1)[近10筆PM2.5最大值]
 						isOK = (isOK && (row[0] != null && row[0].length > 0 && !isNaN(row[0])));
 
 						if (isOK) {
@@ -211,7 +211,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 								([
 									connSta, ('<br/>'),
 									dateStr, ('&nbsp;'), timeStr, ('<br/>'),
-									'<span name="pm25max">Max60=[', pm25Value60Max, '] | Rows=[', dataCount, ']</span>', ('<br/>'),
+									'<span name="pm25max">Max10=[', pm25Value60Max, '] | Rows=[', dataCount, ']</span>', ('<br/>'),
 									'PM2.5=[', pm25Value, ']', ('&nbsp;'), pm25Text, ('&nbsp;'), ('<br/>'),
 									'PM1.0=[', pm10Value, ']'
 								].join(''));
@@ -224,7 +224,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 
 						fUpdate();
 
-					}, 1000);
+					}, 10000);
 				}
 				else {
 
@@ -238,7 +238,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 						fTryConnect();
 						fUpdate();
 
-					}, 3000);
+					}, 10000);
 				}
 
 			}, function (response) {
@@ -253,7 +253,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 					fTryConnect();
 					fUpdate();
 
-				}, 3000);
+				}, 10000);
 			});
 		}
 		catch (ex) {
@@ -268,7 +268,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 				fTryConnect();
 				fUpdate();
 
-			}, 3000);
+			}, 10000);
 		}
 	};
 
@@ -287,7 +287,7 @@ function RefreshViewerElement(elementId, deviceComment, docId, sheetRange) {
 				fTryConnect();
 				fUpdate();
 
-			}, 3000);
+			}, 10000);
 		}
 
 	}, 10000);
